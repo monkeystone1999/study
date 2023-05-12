@@ -57,8 +57,8 @@ class _HomeState extends State<Home> {
             onPressed: () {
               Navigator.pushNamed(context, '/signup');
             },
-            child: Text(
-                'SignUp'),)
+            child: Text('SignUp'),
+          )
         ],
       ),
       body: Padding(
@@ -66,25 +66,25 @@ class _HomeState extends State<Home> {
         child: Column(
           children: [
             CustomCard(
-              child: Text('recruit'),
-              size: {'width': 100, 'height': 100},
-              onTap: () {Navigator.pushNamed(context, '/recruit');}
-            ),
+                child: Text('recruit'),
+                size: {'width': 100, 'height': 100},
+                onTap: () {
+                  Navigator.pushNamed(context, '/recruit');
+                }),
             CustomCard(
-              child: Text('two'),
-              size: {'width': 100, 'height': 100},
-              onTap: (){Navigator.pushNamed(context, '/two');}
-            ),
+                child: Text('two'),
+                size: {'width': 100, 'height': 100},
+                onTap: () {
+                  Navigator.pushNamed(context, '/two');
+                }),
           ],
         ),
       ),
-    bottomNavigationBar: HomeBottomNav(onItemTapped: _onItemTapped, selectedIndex: _selectedIndex
-    )
-    ,
+      bottomNavigationBar: HomeBottomNav(
+          onItemTapped: _onItemTapped, selectedIndex: _selectedIndex),
     );
   }
 }
-
 
 class HomeBottomNav extends StatelessWidget {
   HomeBottomNav(

@@ -1,11 +1,7 @@
-import 'dart:js_interop';
-
 import 'package:flutter/material.dart';
 import 'package:production/src/pages/presentation/input_1.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-
-
 
 class Signup extends StatelessWidget {
   Signup({Key? key}) : super(key: key);
@@ -29,10 +25,12 @@ class Signup extends StatelessWidget {
       "phone_number": '${PHONENUMBER?.text}',
     };
     var response;
-    await http.post(Uri.parse(URL), body: params).then((value) => response = value);
+    await http
+        .post(Uri.parse(URL), body: params)
+        .then((value) => response = value);
     var json_res = jsonDecode(response.body);
-    if(response.body.isDefinedAndNotNull){
-      Navigator.popUntil(context, (context)=> context.isFirst);
+    if (response.body.isDefinedAndNotNull) {
+      Navigator.popUntil(context, (context) => context.isFirst);
     }
     return [];
   }
@@ -56,9 +54,11 @@ class Signup extends StatelessWidget {
             Input_1(target: EMAIL, width: 100),
             Input_1(target: GENDER, width: 100),
             Input_1(target: NICK, width: 100),
-            TextButton(onPressed: (){
-              _future(context);
-            }, child: Text('제출!'))
+            TextButton(
+                onPressed: () {
+                  _future(context);
+                },
+                child: Text('제출!'))
           ],
         )),
       ),
