@@ -4,10 +4,12 @@ class Input_1 extends StatelessWidget {
   Input_1(
       {Key? key,
       required TextEditingController? this.target,
-      required this.width})
+      required this.width,
+      required String this.label})
       : super(key: key);
   final TextEditingController? target;
   final int width;
+  final String label;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -15,7 +17,7 @@ class Input_1 extends StatelessWidget {
       child: TextField(
         decoration: InputDecoration(
           border: OutlineInputBorder(),
-          labelText: target.toString(),
+          labelText: label,
         ),
         controller: target,
         textAlign: TextAlign.center,

@@ -47,13 +47,13 @@ class Signup extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Input_1(target: ID, width: 100),
-            Input_1(target: PW, width: 100),
-            Input_1(target: PWCHECK, width: 100),
-            Input_1(target: PHONENUMBER, width: 100),
-            Input_1(target: EMAIL, width: 100),
-            Input_1(target: GENDER, width: 100),
-            Input_1(target: NICK, width: 100),
+            Input_1(target: ID, width: 100, label: "ID"),
+            Input_1(target: PW, width: 100, label: "비밀번호"),
+            Input_1(target: PWCHECK, width: 100, label: "비밀번호 재입력"),
+            Input_1(target: PHONENUMBER, width: 100, label: "전화번호"),
+            Input_1(target: EMAIL, width: 100,label: "Email"),
+            Input_1(target: GENDER, width: 100, label: "성별"),
+            Input_1(target: NICK, width: 100, label: "닉네임"),
             TextButton(
                 onPressed: () {
                   _future(context);

@@ -72,11 +72,16 @@ class _HomeState extends State<Home> {
                   Navigator.pushNamed(context, '/recruit');
                 }),
             CustomCard(
-                child: Text('two'),
+                child: Text('write'),
                 size: {'width': 100, 'height': 100},
                 onTap: () {
-                  Navigator.pushNamed(context, '/two');
+                  Navigator.pushNamed(context, '/write');
                 }),
+            TextButton(
+                onPressed: () {
+                  print(storage.read(key: "access_token"));
+                },
+                child: Text('secureflutter'))
           ],
         ),
       ),

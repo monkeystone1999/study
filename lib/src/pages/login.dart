@@ -1,37 +1,23 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:production/src/bloc/LoginBloc.dart';
 import 'package:http/http.dart' as http;
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:production/src/model/LoginModel.dart';
 
-class Login extends StatelessWidget {
-  Login({Key? key}) : super(key: key);
+class LoginPage extends StatefulWidget {
+  LoginPage({Key? key}) : super(key: key);
+
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  LoginModel login = new LoginModel();
   TextEditingController Id = TextEditingController();
   TextEditingController PassWord = TextEditingController();
-  static final storage = FlutterSecureStorage();
-
-  //로그인 보내는 부분
-  Future<List> _future(context) async {
-    final URL = "http://anu330.iptime.org:8080/withcar/login-process";
-    var params = {"userId": '${Id.text}', "pw": '${PassWord.text}'};
-    var response;
-    await http
-        .post(Uri.parse(URL), body: params)
-        .then((value) => response = value);
-    var json_res = jsonDecode(response.body);
-
-    if (response.body.isNotEmpty) {
-      Navigator.popUntil(context, (context) => context.isFirst);
-      await storage.write(key: "access_token", value: json_res['access_token']);
-      await storage.write(
-          key: "refresh_token", value: json_res['refresh_token']);
-      var values = await storage.read(key: "access_token");
-      print(values);
-    }
-    return [];
-  }
-  //로그인 여부에 따라서 저장할지 안할지 선택하자
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -77,10 +63,15 @@ class Login extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               SizedBox(
-                width: 85,
+                width: 140,
                 child: ElevatedButton(
-                  onPressed: () {
-                    _future(context);
+                  onPressed: () async {
+                    login.id = Id.text.toString();
+                    login.pw = PassWord.text.toString();
+                    context
+                        .read<LoginBloc>()
+                        .add(LoginSubmitEvent(login: login));
+                    // Navigator.of(context).pushNamed('/');
                   },
                   child: Text('Login'),
                 ),
@@ -89,7 +80,7 @@ class Login extends StatelessWidget {
                 width: 50,
               ),
               SizedBox(
-                width: 85,
+                width: 140,
                 child: ElevatedButton(
                   onPressed: () {
                     Navigator.of(context).pushNamed('/signup');

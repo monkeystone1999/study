@@ -1,7 +1,4 @@
 
-
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 class CustomCard extends StatelessWidget {
   CustomCard({Key? key, required this.child,  required Map<String, int> this.size ,required this.onTap})
